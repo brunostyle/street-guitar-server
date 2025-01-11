@@ -1,4 +1,4 @@
-process.loadEnvFile();
+import 'dotenv/config';
 import { AppRoutes } from "./routes";
 import { Server } from "./server";
 import { Mongo } from './database/mongo';
