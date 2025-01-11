@@ -13,6 +13,7 @@
     "description": "",
     "devDependencies": {
         "@types/bcryptjs": "^2.4.6",
+        "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
         "@types/express-fileupload": "^1.5.1",
         "@types/jsonwebtoken": "^9.0.7",
@@ -23,6 +24,7 @@
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "cloudinary": "^2.5.1",
+        "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^5.0.0",
         "express-fileupload": "^1.5.1",

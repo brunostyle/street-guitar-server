@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
 interface Options {
@@ -20,7 +21,8 @@ export class Server {
         //Middlewares
         this.app.use(express.json());
         this.app.use(express.urlencoded());
-        this.app.use(fileUpload({useTempFiles: true, tempFileDir: '/tmp/'}));
+        this.app.use(cors());
+        this.app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
 
         //Routes
         this.app.use(this.routes);
