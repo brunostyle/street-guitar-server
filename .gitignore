@@ -1,0 +1,8 @@
+node_modules
+# /dist
+
+# BORRAR
+.env
+# tsconfig.json
+# package.json
+# package-lock.json
