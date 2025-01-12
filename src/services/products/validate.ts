@@ -41,7 +41,6 @@ export class ProductValidate {
         validateMongoId,
         check('id').custom(existProduct),
         check('title', 'String no valido').optional().isString(),
-        check('title').optional().custom(productAlreadyExists),
         check('description', 'String no valido').optional().isString(),
         check('category', 'String no valido').optional().isString(),
         check('tags', 'Array no valido').optional().isArray(),

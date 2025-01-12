@@ -14,43 +14,6 @@ export class UploadRoutes {
         router.post('/file', validate.uploadFile(), controller.uploadFile);
         router.put('/file', validate.deleteFile(), controller.deleteFile);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // router.post('/user/:id', validate.uploadUserFile(), controller.uploadUserFile);
-        // router.post('/product/tab/:id', validate.uploadProductFile(), controller.uploadProductTab);
-
-        // router.post('/product/images/:id', validate.uploadProductFile(), controller.uploadProductImages);
-        // router.put('/product/images/:id', validate.deleteUploadProductFile(), controller.deleteUploadProductFile);
-
-
         return router;
     }
 }

@@ -85,4 +85,14 @@ export class UserController {
             console.log(error);
         }
     }
+
+    public renewToken = async (req: Request, res: Response) => {
+        const { _id, name, email, role, avatar } = (req as any).userAuth;
+        try {
+            const token = await generateJWT(_id);
+            res.json({ user: { id: _id, name, email, role, avatar }, token })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

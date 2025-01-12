@@ -56,4 +56,8 @@ export class UserValidate {
         check('id').custom(existUser),
         validateField
     ])
+
+    public renewToken = () => ([
+        validateJWT
+    ])
 }
