@@ -3,7 +3,7 @@ import { validateExtensionImage, validateExtensionFile, validateField, validateF
 
 export class UploadValidate {
     public uploadImage = () => ([
-        // validateJWT,
+        validateJWT,
         validateFile,
         validateExtensionImage,
         check('collection', 'Coleccion no valida').isIn(['users', 'products', 'tabs']),
@@ -19,7 +19,7 @@ export class UploadValidate {
     ])
 
     public uploadFile = () => ([
-        // validateJWT,
+        validateJWT,
         validateFile,
         validateExtensionFile,
     ])
