@@ -28,6 +28,26 @@ export class ProductController {
         }
     }
 
+    public getProductByCategory = async (req: Request, res: Response) => {
+        const { category } = req.params;
+        try {
+            const products = await Product.find({ category });
+            res.json(products);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    public getProductByQuery = async (req: Request, res: Response) => {
+        const { title } = req.params;
+        try {
+            const products = await Product.find({ title: { $regex: title, $options: 'i' } });
+            res.json(products);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     public createProduct = async (req: Request, res: Response) => {
         const { title, description, tags, category, images, pdf, tab, spotify } = req.body;
         try {

@@ -34,13 +34,11 @@ export class UserController {
         const { email, password } = req.body;
         try {
             const user = await User.findOne({ email });
-            //Verifica la contraseña
             const passwordMatch = await comparePassword(password, user?.password!);
             if (!passwordMatch) {
                 res.status(400).json([{ field: 'password', error: 'Contraseña incorrecta' }]);
                 return;
             }
-            //Genera un JWT
             const token = generateJWT(user?.id);
             res.json({ user, token });
         } catch (error) {
@@ -87,7 +85,7 @@ export class UserController {
     }
 
     public renewToken = async (req: Request, res: Response) => {
-        const { _id, name, email, role, avatar } = (req as any).userAuth;
+        const { _id, name, email, role, avatar } = req.userAuth;
         try {
             const token = await generateJWT(_id);
             res.json({ user: { id: _id, name, email, role, avatar }, token })

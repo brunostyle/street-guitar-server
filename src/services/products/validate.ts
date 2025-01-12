@@ -15,6 +15,17 @@ export class ProductValidate {
         validateField
     ])
 
+    public getProductByCategory = () => ([
+        check('category', 'La categoria es requerida').notEmpty(),
+        check('category', 'Categoria no valida').optional().isIn(['rock', 'pop', 'folclore']),
+        validateField
+    ])
+
+    public getProductByQuery = () => ([
+        check('title', 'El titulo es requerido').notEmpty(),
+        validateField
+    ])
+
     public createProduct = () => ([
         validateJWT,
         validateAdminRole,

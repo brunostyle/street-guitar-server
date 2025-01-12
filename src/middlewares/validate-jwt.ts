@@ -16,7 +16,7 @@ export const validateJWT = async (req: Request, res: Response, next: NextFunctio
             res.status(400).json([{ field: 'user', error: 'El usuario no existe en la base de datos' }])
             return
         };
-        (req as any).userAuth = user;
+        req.userAuth = user;
         next();
     } catch (error) {
         console.log(error);

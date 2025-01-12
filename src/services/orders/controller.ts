@@ -33,10 +33,11 @@ export class OrderController {
     }
 
     public createOrder = async (req: Request, res: Response) => {
-        const { userAuth, products } = req.body;
+        const { products } = req.body;
+        const { _id } = req.userAuth;
         try {
             const newOrder = new Order({
-                user: userAuth.id,
+                user: _id,
                 paid: false,
                 total: 0,
                 items: products.length,

@@ -14,7 +14,7 @@ export class UserRoutes {
         router.post('/register', validate.registerUser(), controller.registerUser);
         router.put('/:id', validate.updateUser(), controller.updateUser);
         router.delete('/:id', validate.deleteUser(), controller.deleteUser);
-        router.get('/auth/renew', validate.renewToken(), controller.renewToken)
+        router.get('/auth/renew', validate.renewToken(), controller.renewToken);
 
         return router;
     }
