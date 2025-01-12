@@ -5,8 +5,7 @@ export const validateExtensionImage = async (req: Request, res: Response, next: 
     const allowExtensions = ['jpg', 'jpeg', 'png', 'jfif'];
     const extension = name.split('.').at(-1);
     if (!allowExtensions.includes(extension)) {
-        res.json([{ field: 'file', error: `La extension ${extension} no es valida, solo se permiten las extensiones ${allowExtensions}` }]);
-        return;
+        return res.status(401).json([{ field: 'file', error: `La extension ${extension} no es valida, solo se permiten las extensiones ${allowExtensions}` }]);
     }
     next();
 }
@@ -15,8 +14,7 @@ export const validateExtensionFile = async (req: Request, res: Response, next: N
     const { name } = req.files?.file as any;
     const extension = name.split('.').at(-1);
     if (extension !== 'pdf') {
-        res.json([{ field: 'file', error: `La extension ${extension} no es valida, solo se permiten las extension pdf` }]);
-        return;
+        return res.status(401).json([{ field: 'file', error: `La extension ${extension} no es valida, solo se permiten las extension pdf` }]);
     }
     next();
 }
