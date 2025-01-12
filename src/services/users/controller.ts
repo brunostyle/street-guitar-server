@@ -33,16 +33,16 @@ export class UserController {
     public loginUser = async (req: Request, res: Response) => {
         const { email, password } = req.body;
         try {
-            const userFound = await User.findOne({ email });
+            const user = await User.findOne({ email });
             //Verifica la contraseña
-            const passwordMatch = await comparePassword(password, userFound?.password!);
+            const passwordMatch = await comparePassword(password, user?.password!);
             if (!passwordMatch) {
-                res.status(400).json(['Contraseña incorrecta']);
+                res.status(400).json([{ field: 'password', error: 'Contraseña incorrecta' }]);
                 return;
             }
             //Genera un JWT
-            const token = generateJWT(userFound?.id);
-            res.json({ userFound, token });
+            const token = generateJWT(user?.id);
+            res.json({ user, token });
         } catch (error) {
             console.log(error);
         }
@@ -53,8 +53,10 @@ export class UserController {
         try {
             data.password = await encryptPassword(data.password!);
             const newUser = new User(data);
-            const userAdded = await newUser.save();
-            res.json(userAdded);
+            const user = await newUser.save();
+            //Genera un JWT
+            const token = generateJWT(user?.id);
+            res.json({ user, token });
         } catch (error) {
             console.log(error);
         }
