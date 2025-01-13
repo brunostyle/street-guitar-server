@@ -11,8 +11,8 @@ export class OrderController {
                 Order.find()
                     .limit(limit)
                     .skip((page - 1) * limit)
-                    .populate({ path: 'user', select: { _id: 0, id: '$_id', name: 1, email: 1, avatar: 1 } })
-                    .populate({ path: 'products', select: { _id: 0, id: '$_id', createdAt: 1, title: 1, description: 1, price: 1, tags: 1, category: 1, images: 1, pdf: 1, tab: 1, spotify: 1 } })
+                    .populate('user', '-role')
+                    .populate('products')
             ]);
             res.json({ page, limit, total, orders });
         } catch (error) {
@@ -24,8 +24,8 @@ export class OrderController {
         const { id } = req.params;
         try {
             const orderFind = await Order.findById(id)
-                .populate({ path: 'user', select: { _id: 0, id: '$_id', name: 1, email: 1, avatar: 1 } })
-                .populate({ path: 'products', select: { _id: 0, id: '$_id', createdAt: 1, title: 1, description: 1, price: 1, tags: 1, category: 1, images: 1, pdf: 1, tab: 1, spotify: 1 } })
+                .populate('user', '-role')
+                .populate('products')
             res.json(orderFind);
         } catch (error) {
             console.log(error);

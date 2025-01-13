@@ -12,8 +12,8 @@ export class DashboardController {
                 Order.find().countDocuments(),
                 Order.find()
                     .limit(10)
-                    .select('_id createdAt')
-                    .populate({ path: 'user', select: { _id: 0, name: 1, email: 1, avatar: 1 } })
+                    .select('id createdAt')
+                    .populate('user', 'id name email avatar')
             ])
             const chart = {
                 clients: [31, 40, 28, 51, 42, 109, 100],

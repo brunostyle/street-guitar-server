@@ -25,12 +25,14 @@ const orderSchema = new Schema({
         type: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
         required: [true, 'products is required']
     }
-}, { versionKey: false });
+});
 
-orderSchema.methods.toJSON = function () {
-    const { _id, ...order } = this.toObject();
-    order.id = _id;
-    return order;
-}
+orderSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret, options) {
+        delete ret._id;
+    }
+})
 
 export const Order = model('Order', orderSchema);

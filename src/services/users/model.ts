@@ -22,13 +22,15 @@ const userSchema = new Schema({
         default: 'client',
         enum: ['admin', 'client']
     },
-}, { versionKey: false });
+});
 
-// Extrae los campos que quieras y no los manda al cliente
-userSchema.methods.toJSON = function () {
-    const { _id, password, ...user } = this.toObject();
-    user.id = _id;
-    return user;
-}
+userSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret, options) {
+        delete ret._id;
+        delete ret.password;
+    }
+})
 
 export const User = model('User', userSchema);

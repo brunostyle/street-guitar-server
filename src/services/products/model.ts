@@ -37,12 +37,14 @@ const productSchema = new Schema({
     spotify: {
         type: String
     }
-}, { versionKey: false });
+});
 
-productSchema.methods.toJSON = function () {
-    const { _id, ...product } = this.toObject();
-    product.id = _id;
-    return product;
-}
+productSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret, options) {
+        delete ret._id;
+    }
+})
 
 export const Product = model('Product', productSchema);
