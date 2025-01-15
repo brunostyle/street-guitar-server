@@ -51,7 +51,6 @@ export class UserValidate {
 
     public deleteUser = () => ([
         validateJWT,
-        validateAdminRole,
         validateMongoId,
         check('id').custom(existUser),
         validateField
