@@ -1,5 +1,4 @@
 /// <reference path="./types/types.d.ts" />
-import 'dotenv/config';
 import { AppRoutes } from "./routes";
 import { Server } from "./server";
 import { Mongo } from './database/mongo';
