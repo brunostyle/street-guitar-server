@@ -8,7 +8,7 @@ cloudinary.config({
 });
 
 export class UploadController {
-    public uploadImage = async (req: Request, res: Response) => {
+    public uploadFile = async (req: Request, res: Response) => {
         const { collection } = req.params;
         try {
             const { tempFilePath } = req.files?.file as any;
@@ -19,34 +19,13 @@ export class UploadController {
         }
     }
 
-    public deleteImage = async (req: Request, res: Response) => {
+    public deleteFile = async (req: Request, res: Response) => {
         const { collection } = req.params;
         const { url } = req.body;
         try {
             const name = url.split('/').at(-1)?.split('.').at(0);
             await cloudinary.uploader.destroy(`${collection}/${name}`);
             res.json('Imagen eliminada');
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    public uploadFile = async (req: Request, res: Response) => {
-        try {
-            const { tempFilePath } = req.files?.file as any;
-            const { secure_url } = await cloudinary.uploader.upload(tempFilePath, { folder: 'tabs', resource_type: 'raw', format: 'pdf' });
-            res.json(secure_url);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    public deleteFile = async (req: Request, res: Response) => {
-        const { url } = req.body;
-        try {
-            const name = url.split('/').at(-1);
-            await cloudinary.uploader.destroy('tabs/' + name, { resource_type: 'raw' });
-            res.json('Archivo eliminado');
         } catch (error) {
             console.log(error);
         }

@@ -6,13 +6,13 @@ export class UploadValidate {
         validateJWT,
         validateFile,
         validateExtensionImage,
-        check('collection', 'Coleccion no valida').isIn(['users', 'products', 'tabs']),
+        check('collection', 'Coleccion no valida').isIn(['users', 'products']),
         validateField
     ])
 
     public deleteImage = () => ([
         validateJWT,
-        check('collection', 'Coleccion no valida').isIn(['users', 'products', 'tabs']),
+        check('collection', 'Coleccion no valida').isIn(['users', 'products']),
         check('url', 'La url es requerida').notEmpty(),
         check('url', 'Url no valida').optional().isURL(),
         validateField
@@ -22,10 +22,13 @@ export class UploadValidate {
         validateJWT,
         validateFile,
         validateExtensionFile,
+        check('collection', 'Coleccion no valida').isIn(['tabs']),
+        validateField
     ])
 
     public deleteFile = () => ([
         validateJWT,
+        check('collection', 'Coleccion no valida').isIn(['tabs']),
         check('url', 'La url es requerida').notEmpty(),
         check('url', 'Url no valida').optional().isURL(),
         validateField
