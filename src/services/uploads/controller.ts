@@ -12,7 +12,7 @@ export class UploadController {
         const { collection } = req.params;
         try {
             const { tempFilePath } = req.files?.file as any;
-            const { secure_url } = await cloudinary.uploader.upload(tempFilePath, { folder: collection });
+            const { secure_url } = await cloudinary.uploader.upload(tempFilePath, { folder: collection, format: 'jpg' });
             res.json(secure_url);
         } catch (error) {
             console.log(error);
