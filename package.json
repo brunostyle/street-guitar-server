@@ -22,6 +22,7 @@
         "typescript": "^5.7.2"
     },
     "dependencies": {
+        "@supabase/supabase-js": "^2.47.16",
         "bcryptjs": "^2.4.3",
         "cloudinary": "^2.5.1",
         "cors": "^2.8.5",
@@ -29,6 +30,7 @@
         "express-fileupload": "^1.5.1",
         "express-validator": "^7.2.1",
         "jsonwebtoken": "^9.0.2",
-        "mongoose": "^8.9.3"
+        "mongoose": "^8.9.3",
+        "uuid": "^11.0.5"
     }
 }

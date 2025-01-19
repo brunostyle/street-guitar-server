@@ -22,7 +22,9 @@ export class Server {
         this.app.use(express.json());
         this.app.use(express.urlencoded());
         this.app.use(cors());
-        this.app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
+        this.app.use(fileUpload({
+            limits: { fileSize: 50 * 1024 * 1024 },
+        }));
 
         //Routes
         this.app.use(this.routes);
