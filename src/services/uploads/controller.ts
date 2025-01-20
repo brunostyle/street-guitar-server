@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { v4 as uuid } from "uuid";
+import { randomUUID } from "crypto";
 import { supabase } from "../../database/storage";
 
 export class UploadController {
@@ -8,7 +8,7 @@ export class UploadController {
         try {
             const file = req.files?.file as any;
             const contentType = collection === 'tabs' ? 'application/pdf' : 'image/jpeg';
-            const { data, error } = await supabase.storage.from(collection).upload(uuid(), file.data,
+            const { data, error } = await supabase.storage.from(collection).upload(randomUUID(), file.data,
                 { cacheControl: '3600', upsert: false, contentType }
             );
             if (error) res.status(401).json(error);
@@ -24,8 +24,10 @@ export class UploadController {
         const { url } = req.body;
         try {
             const fileName = url.split('/').at(-1);
-            await supabase.storage.from(collection).remove([fileName])
-            res.json('Achivo eliminada');
+            const { data, error } = await supabase.storage.from(collection).remove([fileName])
+            if (error) res.status(401).json(error);
+            if (data?.length === 0) res.status(400).json([{ field: 'file', error: 'No se pudo eliminar' }]);
+            res.json('Archivo eliminado');
         } catch (error) {
             console.log(error);
         }
