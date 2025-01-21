@@ -1,35 +1,36 @@
-import express, { Router } from "express";
+import express from "express";
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
-
-interface Options {
-    port: number | string;
-    routes: Router;
-}
+import { AppRoutes } from "./routes";
 
 export class Server {
-    private app = express();
+    private app;
     private port;
-    private routes;
+    private router;
 
-    constructor({ port, routes }: Options) {
-        this.port = port;
-        this.routes = routes;
+    constructor() {
+        this.app = express();
+        this.port = process.env.PORT ?? 4000;
+        this.router = AppRoutes.routes;
+
+        this.middlewares();
+        this.routes();
     }
 
-    async start() {
-        //Middlewares
+    middlewares() {
         this.app.use(express.json());
         this.app.use(express.urlencoded());
         this.app.use(cors());
         this.app.use(fileUpload({
             limits: { fileSize: 50 * 1024 * 1024 },
         }));
+    }
 
-        //Routes
-        this.app.use(this.routes);
+    routes() {
+        this.app.use(this.router);
+    }
 
-        //Server
+    start() {
         this.app.listen(this.port, () => {
             console.log('Server listening on port', this.port);
         });

@@ -1,17 +1,10 @@
 /// <reference path="./types/types.d.ts" />
-import { AppRoutes } from "./routes";
-import { Server } from "./server";
 import { Mongo } from './database/mongo';
+import { Server } from "./server";
 
 const main = async () => {
-    await Mongo.connect({
-        mongoURL: process.env.MONGO_URL ?? '',
-    });
-
-    const server = new Server({
-        port: process.env.PORT ?? 4000,
-        routes: AppRoutes.routes
-    });
+    await Mongo.connect();
+    const server = new Server();
     server.start();
 }
 
