@@ -34,8 +34,7 @@ export class DashboardController {
             for (const [time, values] of group.entries()) {
                 chartData.push({ time, value: values.reduce((acc, act) => acc + act.items, 0) })
             }
-            // res.json({ numberOfClients, numberOfProducts, numberOfOrders, lastSells, chartData });
-            res.json({ lastSells });
+            res.json({ numberOfClients, numberOfProducts, numberOfOrders, lastSells, chartData });
         } catch (error) {
             console.log(error);
         }
