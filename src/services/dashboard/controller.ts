@@ -28,7 +28,7 @@ export class DashboardController {
                 Order.find()
                     .select('createdAt items')
             ])
-            const group = groupBy(sells, item => item.createdAt.toLocaleDateString('es-ES'));
+            const group = groupBy(sells, item => item.createdAt.toLocaleDateString('en-CA'));
             const chartData = [];
             for (const [time, values] of group.entries()) {
                 chartData.push({ time, value: values.reduce((acc, act) => acc + act.items, 0) })
