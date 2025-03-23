@@ -13,6 +13,7 @@ export class OrderController {
                     .skip((page - 1) * limit)
                     .populate('user', '-role')
                     .populate('products')
+                    .sort({ createdAt: -1 })
             ]);
             res.json({ page, limit, total, orders });
         } catch (error) {

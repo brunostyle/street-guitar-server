@@ -24,7 +24,8 @@ export class DashboardController {
                 Order.find()
                     .limit(10)
                     .select('id createdAt')
-                    .populate('user', 'id name email avatar'),
+                    .populate('user', 'id name email avatar')
+                    .sort({ createdAt: -1 }),
                 Order.find()
                     .select('createdAt items')
             ])
@@ -33,7 +34,8 @@ export class DashboardController {
             for (const [time, values] of group.entries()) {
                 chartData.push({ time, value: values.reduce((acc, act) => acc + act.items, 0) })
             }
-            res.json({ numberOfClients, numberOfProducts, numberOfOrders, lastSells, chartData });
+            // res.json({ numberOfClients, numberOfProducts, numberOfOrders, lastSells, chartData });
+            res.json({ lastSells });
         } catch (error) {
             console.log(error);
         }
