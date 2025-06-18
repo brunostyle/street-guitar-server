@@ -43,6 +43,9 @@ export class ProductValidate {
         check('pdf', 'String no valido').optional().isString(),
         check('tab', 'String no valido').optional().isString(),
         check('spotify', 'Url no valida').optional().isURL(),
+        check('difficulty', 'La dificultad es requerida').notEmpty(),
+        check('difficulty', 'La dificultad debe ser un numero').optional().isNumeric(),
+        check('difficulty', 'La dificultad debe ser un número entre 1 y 5').optional().isInt({ min: 1, max: 5 }),
         validateField
     ])
 
@@ -61,6 +64,8 @@ export class ProductValidate {
         check('pdf', 'String no valido').optional().isString(),
         check('tab', 'String no valido').optional().isString(),
         check('spotify', 'Url no valida').optional().isURL(),
+        check('difficulty', 'La dificultad debe ser un numero').optional().isNumeric(),
+        check('difficulty', 'La dificultad debe ser un número entre 1 y 5').optional().isInt({ min: 1, max: 5 }),
         validateField
     ])
 

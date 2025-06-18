@@ -36,6 +36,12 @@ const productSchema = new Schema({
     },
     spotify: {
         type: String
+    },
+    difficulty: {
+        type: Number,
+        required: [true, 'difficulty is required'],
+        min: [1, 'The minimum difficulty is 1'],
+        max: [5, 'The maximum difficulty is 5']
     }
 });
 
