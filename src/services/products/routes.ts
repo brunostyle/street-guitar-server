@@ -11,6 +11,7 @@ export class ProductRoutes {
         router.get('/', validate.getProducts(), controller.getProducts);
         router.get('/:id', validate.getProductById(), controller.getProductById);
         router.get('/category/:category', validate.getProductByCategory(), controller.getProductByCategory);
+        router.get('/difficulty/:difficulty', validate.getProductByDifficulty(), controller.getProductByDifficulty);
         router.get('/query/:title', validate.getProductByQuery(), controller.getProductByQuery);
         router.post('/', validate.createProduct(), controller.createProduct);
         router.put('/:id', validate.updateProduct(), controller.updateProduct);

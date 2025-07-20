@@ -38,6 +38,16 @@ export class ProductController {
         }
     }
 
+    public getProductByDifficulty = async (req: Request, res: Response) => {
+        const { difficulty } = req.params;
+        try {
+            const products = await Product.find({ difficulty });
+            res.json(products);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     public getProductByQuery = async (req: Request, res: Response) => {
         const { title } = req.params;
         try {

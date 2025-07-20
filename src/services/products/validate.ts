@@ -21,6 +21,12 @@ export class ProductValidate {
         validateField
     ])
 
+    public getProductByDifficulty = () => ([
+        check('difficulty', 'La dificultad es requerida').notEmpty(),
+        check('difficulty', 'Dificultad no valida').optional().isInt(),
+        validateField
+    ])
+
     public getProductByQuery = () => ([
         check('title', 'El titulo es requerido').notEmpty(),
         validateField
