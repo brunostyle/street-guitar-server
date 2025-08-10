@@ -9,6 +9,7 @@ export class DashboardRoutes {
         const controller = new DashboardController;
 
         router.get('/', validate.getStats(), controller.getStats);
+        router.get('/keep-alive', controller.keepAlive);
 
         return router;
     }

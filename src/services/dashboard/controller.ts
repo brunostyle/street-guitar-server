@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { User } from "../users/model";
 import { Product } from "../products/model";
 import { Order } from "../orders/model";
+import { supabase } from "../../database/storage";
 
 function groupBy<T, K>(array: T[], keySelector: (item: T) => K): Map<K, T[]> {
     return array.reduce((map, item) => {
@@ -35,6 +36,16 @@ export class DashboardController {
                 chartData.push({ time, value: values.reduce((acc, act) => acc + act.items, 0) })
             }
             res.json({ numberOfClients, numberOfProducts, numberOfOrders, lastSells, chartData });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    public keepAlive = async (req: Request, res: Response) => {
+        try {
+            const { error } = await supabase.from('users').select('id').limit(1);
+            if (error) throw error;
+            res.json('Ping a Supabase exitoso 🚀');
         } catch (error) {
             console.log(error);
         }
