@@ -17,7 +17,7 @@ export class ProductValidate {
 
     public getProductByCategory = () => ([
         check('category', 'La categoria es requerida').notEmpty(),
-        check('category', 'Categoria no valida').optional().isIn(['rock', 'pop', 'folclore']),
+        check('category', 'Categoria no valida').optional().isIn(['rock', 'pop', 'folclore', 'cumbia']),
         validateField
     ])
 
