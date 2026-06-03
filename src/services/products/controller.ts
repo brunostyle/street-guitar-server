@@ -51,7 +51,12 @@ export class ProductController {
     public getProductByQuery = async (req: Request, res: Response) => {
         const { title } = req.params;
         try {
-            const products = await Product.find({ title: { $regex: title, $options: 'i' } });
+            const products = await Product.find({
+                $or: [
+                    { title: { $regex: title, $options: 'i' } },
+                    { description: { $regex: title, $options: 'i' } }
+                ]
+            });
             res.json(products);
         } catch (error) {
             console.log(error);
