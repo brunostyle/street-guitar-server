@@ -25,8 +25,11 @@ const productSchema = new Schema({
         type: String,
         required: [true, 'category is required']
     },
-    images: {
-        type: [String],
+    image: {
+        type: String
+    },
+    thumbnail: {
+        type: String
     },
     pdf: {
         type: String
