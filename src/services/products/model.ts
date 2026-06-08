@@ -49,6 +49,7 @@ const productSchema = new Schema({
     tuning: {
         label: {
             type: String,
+            default: 'Standard',
             required: [true, 'El nombre de la afinación es obligatorio'],
             trim: true
         },
