@@ -45,6 +45,21 @@ const productSchema = new Schema({
         required: [true, 'difficulty is required'],
         min: [1, 'The minimum difficulty is 1'],
         max: [5, 'The maximum difficulty is 5']
+    },
+    tuning: {
+        label: {
+            type: String,
+            required: [true, 'El nombre de la afinación es obligatorio'],
+            trim: true
+        },
+        notes: {
+            first: { type: Number, required: true, min: 0, default: 4 },
+            second: { type: Number, required: true, min: 0, default: 11 },
+            third: { type: Number, required: true, min: 0, default: 7 },
+            fourth: { type: Number, required: true, min: 0, default: 2 },
+            fifth: { type: Number, required: true, min: 0, default: 9 },
+            sixth: { type: Number, required: true, min: 0, default: 4 }
+        }
     }
 });
 

@@ -64,9 +64,9 @@ export class ProductController {
     }
 
     public createProduct = async (req: Request, res: Response) => {
-        const { title, description, tags, category, image, thumbnail, pdf, tab, spotify, difficulty } = req.body;
+        const { title, description, tags, category, image, thumbnail, pdf, tab, spotify, difficulty, tuning } = req.body;
         try {
-            const newProduct = new Product({ title, description, tags, category, image, thumbnail, pdf, tab, spotify, difficulty });
+            const newProduct = new Product({ title, description, tags, category, image, thumbnail, pdf, tab, spotify, difficulty, tuning });
             const productAdded = await newProduct.save();
             res.json(productAdded);
         } catch (error) {
